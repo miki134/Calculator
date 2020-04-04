@@ -11,6 +11,7 @@ Interface::Interface(QWidget *parent)
 	QWidget(parent)
 {
 	run();
+	loadDesign();
 }
 
 void Interface::run()
@@ -41,7 +42,7 @@ void Interface::createLayout()
 	label = new QLabel(operation, this);
 	label->setFixedHeight(label->height() * 2.5);
 	label->setAlignment(Qt::AlignRight | Qt::AlignCenter);
-	label->setFont(QFont("Purisa", 15));
+	label->setFont(QFont("Arial", 15));
 	layout->addWidget(label);
 }
 
@@ -51,7 +52,7 @@ void Interface::createButtons()
 	buttonsBackspace = new QPushButton[2];
 
 	buttonsBackspace[0].setText("C");
-	buttonsBackspace[0].setFont(QFont("Purisa", 20));
+	buttonsBackspace[0].setFont(QFont("Arial", 20));
 	
 	buttonsBackspace[1].setIcon(QIcon("backspaceIcon.png"));
 	buttonsBackspace[1].setIconSize(QSize(60, 40));
@@ -69,7 +70,7 @@ void Interface::createButtons()
 		{
 			buttons[position].setText((QString)values[position]);
 			buttons[position].setSizePolicy(sizePolicy());
-			buttons[position].setFont(QFont("Purisa", 20));
+			buttons[position].setFont(QFont("Arial", 20));
 			buttons[position].setMinimumSize(70, 70);
 
 			gridButtons->addWidget(&buttons[position], vertical, horizontal);
@@ -90,6 +91,15 @@ void Interface::connectButtons()
 	}
 	connect(&buttonsBackspace[0], &QPushButton::clicked, this, [=]() {addOperation('c'); });
 	connect(&buttonsBackspace[1], &QPushButton::clicked, this, [=]() {addOperation('<'); });
+}
+
+void Interface::loadDesign()
+{
+	QFile styleSheet("StyleSheet.css");
+	if (!styleSheet.open(QIODevice::ReadOnly))
+		qDebug() << "Can't open file";
+	qApp->setStyleSheet(styleSheet.readAll());
+	styleSheet.close();
 }
 
 void Interface::addOperation(unsigned char sign)

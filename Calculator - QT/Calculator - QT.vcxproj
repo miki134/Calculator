@@ -25,6 +25,9 @@
     <Image Include="backspaceIcon.png" />
     <Image Include="icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="StyleSheet.css" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0603C539-0E17-49CC-A628-3CC9BD2BE719}</ProjectGuid>
     <RootNamespace>Calculator</RootNamespace>

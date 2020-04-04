@@ -20,6 +20,8 @@ private:
 	void createLayout();
 	void connectButtons();
 
+	void loadDesign();
+
 private:
 	QVBoxLayout *layout; //main layout, contains a label and a grid
 	

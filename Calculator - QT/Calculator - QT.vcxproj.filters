@@ -11,7 +11,7 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{213c2e4d-c7e9-42e6-95a0-1d0443fe8e88}</UniqueIdentifier>
-      <Extensions>jpg;png;jpeg</Extensions>
+      <Extensions>jpg;png;jpeg;css</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,5 +48,10 @@
     <QtMoc Include="Interface.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="StyleSheet.css">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

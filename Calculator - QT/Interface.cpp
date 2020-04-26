@@ -25,10 +25,10 @@ void Interface::run()
 	layout = new QVBoxLayout(this);
 	layout->setSpacing(2);
 	
-	gridButtons = new QGridLayout(this);	
+	gridButtons = new QGridLayout();	
 	gridButtons->setSpacing(2);
 
-	gridBackspace = new QGridLayout(this);
+	gridBackspace = new QGridLayout();
 	gridButtons->setSpacing(2);
 
 	createLayout();

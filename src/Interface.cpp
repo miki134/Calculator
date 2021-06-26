@@ -54,7 +54,7 @@ void Interface::createButtons()
 	buttonsBackspace[0].setText("C");
 	buttonsBackspace[0].setFont(QFont("Arial", 20));
 	
-	buttonsBackspace[1].setIcon(QIcon("backspaceIcon.png"));
+    buttonsBackspace[1].setIcon(QIcon(":/backspaceIcon.png"));
 	buttonsBackspace[1].setIconSize(QSize(60, 40));
 
 	for (int i = 0; i < 2; i++)
@@ -95,7 +95,7 @@ void Interface::connectButtons()
 
 void Interface::loadDesign()
 {
-	QFile styleSheet("StyleSheet.css");
+    QFile styleSheet(":/StyleSheet.css");
 	if (!styleSheet.open(QIODevice::ReadOnly))
 		qDebug() << "Can't open file";
 	qApp->setStyleSheet(styleSheet.readAll());

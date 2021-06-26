@@ -3,7 +3,8 @@
 #include<qgridlayout.h>
 #include<qpushbutton.h>
 #include<qlabel.h>
-#include<Qt3DInput/qkeyevent.h>
+#include<qfile.h>
+#include <QKeyEvent>
 
 #include"MathOperation.h"
 

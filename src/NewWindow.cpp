@@ -8,7 +8,7 @@ NewWindow::NewWindow(QWidget *parent)
 {
 	window->resize(1100, 600);
 	window->setWindowTitle("Calculator");
-	window->setWindowIcon(QIcon("icon.png"));
+    window->setWindowIcon(QIcon(":/icon.png"));
 }
 
 void NewWindow::on_clicked()

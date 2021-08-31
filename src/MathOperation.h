@@ -1,45 +1,47 @@
 #pragma once
-#include<qlist.h>
-#include<vector>
-#include<qstring.h>
+#include <QString>
+
+#include <vector>
+#include <set>
+#include <map>
 
 class MathOperation
 {
-
-	static std::vector <std::vector <unsigned char>> characters;
-private:
-	QString operation;
-
-	unsigned char character;
-	int position;
-
-	double leftNumber;
-	double rightNumber;
 public:
-	MathOperation() = default;
-	~MathOperation() = default;
+    MathOperation(const QString &mathOperation);
+    ~MathOperation() = default;
 
-public:
+    double execute();
+
+    static QList<QString> infixToRPN(const QString& mathOperation);
+    static QStringList splitStringToMathOperations(const QString & mathOperation);
+    static double executeRPN(QList<QString> &postfixNotation);
+    static double mathOperations(double & leftNumber, double & rightNumer, const unsigned char & token);
+
 	QString result(QString&);
 	QString deleteAll(QString&);
 	QString deleteLast(QString&);
 
 private:
-	bool findFirstSign(); //checks the sign
+    static std::vector <std::vector <unsigned char>> characters;
+    static std::set<QChar> symbols;
 
-	void findCharacterPosition(); //returns the position of the found character
+    bool findFirstSign();
 
-	void setLeftNumber(); //sets the number to the left of the sign
-	void setRightNumber(); //sets the number to the right of the sign
+    void findCharacterPosition();
 
-	int findLeftSeparator(); //returns a position of the next sign or the end of the math operation on the left of the sign
-	int findRightSeparator(); //returns a position of the next sign or the end of the math operation on the right of the sign
+    void setLeftNumber();
+    void setRightNumber();
 
-	double mathOperations(); //performs math operations
-
-
+    int findLeftSeparator();
+    int findRightSeparator();
 
 
-	
+    QString operation;
+    unsigned char character;
+    int position;
+
+    double leftNumber;
+    double rightNumber;
 };
 

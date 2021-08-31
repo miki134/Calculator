@@ -1,14 +1,14 @@
 #pragma once
-#include<qwidget.h>
-#include<qgridlayout.h>
-#include<qpushbutton.h>
-#include<qlabel.h>
-#include<qfile.h>
+#include <QLayout>
+#include <QLabel>
 #include <QKeyEvent>
+#include <QApplication>
+#include <QWidget>
+#include <QPushButton>
 
-#include"MathOperation.h"
+#include "MathOperation.h"
 
-class Interface : public QWidget, MathOperation
+class Interface : public QWidget
 {
 	Q_OBJECT
 public:

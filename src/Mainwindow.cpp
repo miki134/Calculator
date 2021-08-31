@@ -1,6 +1,6 @@
-#include<qicon.h>
-#include"MainWindow.h"
-#include"Interface.h"
+#include <QIcon>
+#include "MainWindow.h"
+#include "Interface.h"
 
 
 MainWindow::MainWindow(QWidget *parent)

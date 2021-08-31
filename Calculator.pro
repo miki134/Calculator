@@ -11,17 +11,13 @@ CONFIG += c++11
 SOURCES += \
     src/main.cpp \
     src/Mainwindow.cpp \
-    src/Cursors.cpp \
     src/Interface.cpp \
     src/MathOperation.cpp \
-    src/NewWindow.cpp \
 
 HEADERS+= \
     src/Mainwindow.h \
-    src/Cursors.h \
     src/Interface.h \
     src/MathOperation.h \
-    src/NewWindow.h \
 
 CONFIG += lrelease
 

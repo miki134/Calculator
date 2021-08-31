@@ -1,10 +1,6 @@
 #include "Interface.h"
-#include "MainWindow.h"
 
-#include<qapplication.h>
-#include<qwidget.h>
-#include<qpushbutton.h>
-#include<qdebug.h>
+#include <QDebug>
 
 Interface::Interface(QWidget *parent)
 	:
@@ -87,7 +83,7 @@ void Interface::connectButtons()
 {
 	for(int position = 0;position<16;position++)
 	{
-		connect(&buttons[position], &QPushButton::clicked, this, [=]() {addOperation(values[position]); });
+        connect(&buttons[position], &QPushButton::clicked, this, [=]() {addOperation(values[position]); });
 	}
 	connect(&buttonsBackspace[0], &QPushButton::clicked, this, [=]() {addOperation('c'); });
 	connect(&buttonsBackspace[1], &QPushButton::clicked, this, [=]() {addOperation('<'); });
@@ -104,25 +100,28 @@ void Interface::loadDesign()
 
 void Interface::addOperation(unsigned char sign)
 {
+    MathOperation math(operation);
+
 	switch (sign)
 	{
-	case '=':
-		label->setText(result(operation));
+    case '=':
+        operation = QString::number(math.execute(), 'g', 5);
 		break;
 	case 'c':
-		label->setText(deleteAll(operation));
+        operation = "";
 		break;
 	case '<':
-		label->setText(deleteLast(operation));
+        operation.remove(operation.length()-1, 1);
 		break;
 	default:
 		if (operation.length() < 16)
 		{
-			operation += sign;
-			label->setText(operation);
+            operation += sign;
 			break;
 		}
 	}
+
+    label->setText(operation);
 }
 
 void Interface::keyPressEvent(QKeyEvent *event)
@@ -153,8 +152,14 @@ void Interface::keyPressEvent(QKeyEvent *event)
 	case Qt::Key_Slash:
 		addOperation(247);
 		break;
+    case Qt::Key_ParenLeft:
+        addOperation('(');
+        break;
+    case Qt::Key_ParenRight:
+        addOperation(')');
+        break;
 	default:
-		for (unsigned char i : values)
+        for (unsigned char i : qAsConst(values))
 			if (event->key() == i)
 				addOperation(i);
 		break;

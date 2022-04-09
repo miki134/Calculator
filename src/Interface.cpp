@@ -1,6 +1,7 @@
 #include "Interface.h"
 
 #include <QDebug>
+#include <QFile>
 
 Interface::Interface(QWidget *parent)
 	:
@@ -64,7 +65,7 @@ void Interface::createButtons()
 	{
 		for (int horizontal = 0; horizontal < 4; horizontal++)
 		{
-			buttons[position].setText((QString)values[position]);
+            buttons[position].setText((QString)QChar(values[position]));
 			buttons[position].setSizePolicy(sizePolicy());
 			buttons[position].setFont(QFont("Arial", 20));
 			buttons[position].setMinimumSize(70, 70);
@@ -116,7 +117,7 @@ void Interface::addOperation(unsigned char sign)
 	default:
 		if (operation.length() < 16)
 		{
-            operation += sign;
+            operation += QChar(sign);
 			break;
 		}
 	}

@@ -4,7 +4,7 @@
 #include <QChar>
 
 std::vector <std::vector <unsigned char>> MathOperation::characters{ {247,215}, {'+', '-'} };
-std::set<QChar> MathOperation::symbols {247,215, '+', '-', '(', ')'};
+std::set<QChar> MathOperation::symbols {QChar(247), QChar(215), '+', '-', '(', ')'};
 
 MathOperation::MathOperation(const QString &mathOperation)
     : operation(mathOperation)
@@ -22,8 +22,8 @@ QList<QString> MathOperation::infixToRPN(const QString &mathOperation)
     QStringList tokenList = splitStringToMathOperations(mathOperation);
 
     std::map<QChar, unsigned int> calcActions = {
-        {247, 3},
-        {215, 3},
+        {QChar(247), 3},
+        {QChar(215), 3},
         {'+', 2},
         {'-', 2},
         {'(', 1}
@@ -165,7 +165,7 @@ bool MathOperation::findFirstSign()
 			for (unsigned char z : characters[y])
 			{
 				if (i == 0 && operation[i] == '-') i++;
-				else if (z == operation[i]) return true;
+                else if (QChar(z) == operation[i]) return true;
 			}
     }
 	return false;
@@ -176,7 +176,7 @@ void MathOperation::findCharacterPosition()
     for (unsigned int y = 0; y < characters.size(); y++)
 		for (unsigned char z : characters[y]) 
 			for (int i = 0; i < operation.length(); i++)
-				if (z == operation[i])
+                if (QChar(z) == operation[i])
 				{
 					if (i == 0 && operation[i] == '-') i++;
 					else
@@ -192,8 +192,8 @@ int MathOperation::findLeftSeparator()
 {
 	for (int i = position-1; i >= 0; i--)
         for (unsigned int y = 0; y < characters.size(); y++)
-			for (QChar z : characters[y])
-				if (operation[i] == z && z!='-') return i;
+            for (auto z : characters[y])
+                if (operation[i] == QChar(z) && z!='-') return i;
 	return -1;
 }
 
@@ -201,8 +201,8 @@ int MathOperation::findRightSeparator()
 {
 	for (int i = position+2; i < operation.length(); i++)
         for (unsigned int y = 0; y < characters.size(); y++)
-			for (QChar z : characters[y])
-				if (operation[i] == z) return i;
+            for (auto z : characters[y])
+                if (operation[i] == QChar(z)) return i;
 	return operation.length();
 }
 
